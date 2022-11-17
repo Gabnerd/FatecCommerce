@@ -13,10 +13,10 @@
     </head>
     <body>
         <form name="savebrand" action="${pageContext.request.contextPath}/SaveBrand" method="POST">
-            <input type="number" name="idbrand" readonly="readonly"><br>
-            <input type="text" name="namebrand"><br>
-            <textarea id="descriptionbrand" name="descriptionbrand" rows="5" cols="10"></textarea><br>
-            <input type="submit" value="" name="Enviar" />
+            <input type="number" name="idbrand" readonly="readonly" value="${brand.getIdBrand()}"><br>
+            <input type="text" name="namebrand" value="${brand.getNameBrand()}"><br>
+            <textarea id="descriptionbrand" name="descriptionbrand" rows="5" cols="10">${brand.getDescriptionBrand()}</textarea><br>
+            <input type="submit" value="${brand == null?'Cadastrar':'Alterar'}" />
         </form>
             ${msg}
     </body>

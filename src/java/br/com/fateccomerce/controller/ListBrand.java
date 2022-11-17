@@ -7,10 +7,7 @@ package br.com.fateccomerce.controller;
 
 import br.com.fateccomerce.dao.BrandDAO;
 import br.com.fateccomerce.dao.GenericDAO;
-import br.com.fateccomerce.model.Brand;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
