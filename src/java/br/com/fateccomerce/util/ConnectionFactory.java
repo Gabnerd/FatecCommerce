@@ -17,7 +17,7 @@ public class ConnectionFactory {
     public static Connection getConnection() throws Exception{
         try{
             Class.forName("org.postgresql.Driver");
-            return DriverManager.getConnection("jdbc:postgresql://motty.db.elephantsql.com:5432/svnjgsxr", "svnjgsxr", "5f9iaRuqyzwv8ofdvWstm5J-Rc3O4lic");
+            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/bd_fatecomerce", "postgres", "123456");
         }catch(Exception e){
             throw new Exception(e.getMessage());
         }

@@ -81,7 +81,22 @@ public class BrandDAO implements GenericDAO {
 
     @Override
     public void deleteById(Integer idObject) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PreparedStatement stmt = null;
+        try{
+            stmt = conn.prepareStatement("DELETE FROM Brand Where id_brand = ?");
+            stmt.setInt(1, idObject);
+            stmt.executeUpdate();
+        }catch(Exception e){
+            System.out.println("Erro ao deletar: " + e.getMessage());
+            e.getStackTrace();
+        }finally{
+            try{
+                ConnectionFactory.close(conn,stmt);
+            }catch(Exception e){
+                System.out.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
