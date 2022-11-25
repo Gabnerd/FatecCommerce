@@ -1,6 +1,0 @@
-create table Brand(
-        id_brand serial not null,
-	name_brand varchar(256) not null unique,
-	description_brand text,
-	constraint pk_brand primary key (id_brand)
-);

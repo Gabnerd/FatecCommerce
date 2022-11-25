@@ -8,7 +8,6 @@ package br.com.fateccomerce.controller;
 import br.com.fateccomerce.dao.BrandDAO;
 import br.com.fateccomerce.dao.GenericDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

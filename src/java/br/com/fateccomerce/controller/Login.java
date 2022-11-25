@@ -4,10 +4,8 @@
  */
 package br.com.fateccomerce.controller;
 
-import br.com.fateccomerce.dao.BrandDAO;
-import br.com.fateccomerce.dao.GenericDAO;
-import br.com.fateccomerce.model.Brand;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Gabriel Rodrigues
  */
-@WebServlet(name = "AlterBrand", urlPatterns = {"/AlterBrand"})
-public class AlterBrand extends HttpServlet {
+@WebServlet(name = "Login", urlPatterns = {"/Login"})
+public class Login extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,18 +30,10 @@ public class AlterBrand extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Brand brand = null;
-        try {
-            GenericDAO dao = new BrandDAO();
-            brand = (Brand) dao.findById(Integer.parseInt(request.getParameter("id")));
-        } catch (Exception e) {
-            System.out.println("Problema ao selecionar marca para ser alterada: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            request.setAttribute("brand", brand);
-            request.getRequestDispatcher("brand/save.jsp").forward(request, response);
-        }
-
+       String username = request.getParameter("username");
+       String password = request.getParameter("password");
+       
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
