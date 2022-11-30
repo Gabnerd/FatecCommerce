@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : save
     Created on : 10 de nov. de 2022, 00:30:20
     Author     : gabriel
@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form name="savebrand" action="${pageContext.request.contextPath}/SaveBrand" method="POST">
+       <form name="savebrand" action="${pageContext.request.contextPath}/SaveBrand" method="POST">
             id: <input type="number" name="idbrand" readonly="readonly" value="${brand.getIdBrand()}"><br>
             nome: <input type="text" name="namebrand" value="${brand.getNameBrand()}"><br>
             descrição: <textarea id="descriptionbrand" name="descriptionbrand" rows="5" cols="10">${brand.getDescriptionBrand()}</textarea><br>

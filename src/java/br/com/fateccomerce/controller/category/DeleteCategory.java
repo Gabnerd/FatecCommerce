@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package br.com.fateccomerce.controller;
+package br.com.fateccomerce.controller.category;
 
-import br.com.fateccomerce.dao.BrandDAO;
+import br.com.fateccomerce.dao.CategoryDAO;
 import br.com.fateccomerce.dao.GenericDAO;
-import br.com.fateccomerce.model.Brand;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Gabriel Rodrigues
  */
-@WebServlet(name = "LoadBrand", urlPatterns = {"/LoadBrand"})
-public class LoadBrand extends HttpServlet {
+@WebServlet(name = "DeleteCategory", urlPatterns = {"/DeleteCategory"})
+public class DeleteCategory extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,18 +32,19 @@ public class LoadBrand extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Brand brand = null;
+        String msg = "";
+        int idCategory = Integer.parseInt(request.getParameter("id"));
         try {
-            GenericDAO dao = new BrandDAO();
-            brand = (Brand) dao.findById(Integer.parseInt(request.getParameter("id")));
+            GenericDAO dao = new CategoryDAO();
+            dao.deleteById(idCategory);
+            msg = "categoria deletada com sucesso";
         } catch (Exception e) {
-            System.out.println("Problema ao selecionar marca para ser alterada: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            request.setAttribute("brand", brand);
-            request.getRequestDispatcher("brand/save.jsp").forward(request, response);
+            msg = "problema ao deletar categoria";
+            System.out.println("Error: " + e.getMessage());
+            e.getStackTrace();
+        }finally{
+            response.sendRedirect("ListBrand");
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

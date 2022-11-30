@@ -5,6 +5,13 @@ create table Brand(
 	constraint pk_brand primary key (id_brand)
 );
 
+create table Category(
+    id_category serial not null,
+    name_category varchar(255) not null unique,
+    description_category text,
+    constraint pk_category primary key(id_category)
+);
+
 
 //Tipo usuario: 1 = adm, 2 = cliente
 create table Usuario(

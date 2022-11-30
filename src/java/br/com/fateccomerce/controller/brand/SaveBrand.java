@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package br.com.fateccomerce.controller;
+package br.com.fateccomerce.controller.brand;
 
 import br.com.fateccomerce.dao.BrandDAO;
 import br.com.fateccomerce.dao.GenericDAO;
@@ -56,9 +56,8 @@ public class SaveBrand extends HttpServlet {
                 System.out.println("Problema ao alterar marca: " + e.getMessage());
                 e.printStackTrace();
             } finally {
-                request.setAttribute("brand", brand);
                 request.setAttribute("msg", msg);
-                request.getRequestDispatcher("brand/save.jsp").forward(request, response);
+                request.getRequestDispatcher("ListCategory").forward(request, response);
             }
         }
     }

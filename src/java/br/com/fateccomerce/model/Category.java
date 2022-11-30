@@ -13,6 +13,9 @@ public class Category {
     private String nameCategory;
     private String descriptionCategory;
 
+    public Category() {
+    }
+
     public Category(String nameCategory, String descriptionCategory) {
         this.nameCategory = nameCategory;
         this.descriptionCategory = descriptionCategory;

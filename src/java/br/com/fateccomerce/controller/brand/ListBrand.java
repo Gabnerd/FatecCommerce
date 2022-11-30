@@ -1,12 +1,12 @@
+package br.com.fateccomerce.controller.brand;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package br.com.fateccomerce.controller;
 
 import br.com.fateccomerce.dao.BrandDAO;
 import br.com.fateccomerce.dao.GenericDAO;
-import br.com.fateccomerce.model.Brand;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Gabriel Rodrigues
  */
-@WebServlet(name = "AlterBrand", urlPatterns = {"/AlterBrand"})
-public class AlterBrand extends HttpServlet {
+@WebServlet(urlPatterns = {"/ListBrand"})
+public class ListBrand extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,18 +32,13 @@ public class AlterBrand extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Brand brand = null;
-        try {
+        try{
             GenericDAO dao = new BrandDAO();
-            brand = (Brand) dao.findById(Integer.parseInt(request.getParameter("id")));
-        } catch (Exception e) {
-            System.out.println("Problema ao selecionar marca para ser alterada: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            request.setAttribute("brand", brand);
-            request.getRequestDispatcher("brand/save.jsp").forward(request, response);
+            request.setAttribute("brands", dao.findAll());
+        }catch(Exception e){
+            System.out.println("Error:" + e.getMessage());
         }
-
+        request.getRequestDispatcher("brand/list.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

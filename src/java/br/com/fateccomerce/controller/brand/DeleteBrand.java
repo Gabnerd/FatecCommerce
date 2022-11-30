@@ -1,9 +1,9 @@
-package br.com.fateccomerce.controller;
-
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
+package br.com.fateccomerce.controller.brand;
 
 import br.com.fateccomerce.dao.BrandDAO;
 import br.com.fateccomerce.dao.GenericDAO;
@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Gabriel Rodrigues
+ * @author Aluno
  */
-@WebServlet(urlPatterns = {"/ListBrand"})
-public class ListBrand extends HttpServlet {
+@WebServlet(name = "DeleteBrand", urlPatterns = {"/DeleteBrand"})
+public class DeleteBrand extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,13 +32,19 @@ public class ListBrand extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
+       Integer idBrand = Integer.parseInt(request.getParameter("id"));
+       String msg = ""; 
+       try {
             GenericDAO dao = new BrandDAO();
-            request.setAttribute("brands", dao.findAll());
-        }catch(Exception e){
-            System.out.println("Error:" + e.getMessage());
-        }
-        request.getRequestDispatcher("brand/list.jsp").forward(request, response);
+            dao.deleteById(idBrand);
+            msg = "Marca deletada com sucesso";
+        } catch (Exception e) {
+             System.out.println("Problema ao deletar marca: " + e.getMessage());
+            e.printStackTrace();
+            msg = "Marca não deletada";
+        }finally {
+                response.sendRedirect("ListBrand");
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
