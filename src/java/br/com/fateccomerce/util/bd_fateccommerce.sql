@@ -12,6 +12,15 @@ create table Category(
     constraint pk_category primary key(id_category)
 );
 
+create table Product(
+    id_product serial not null,
+    name_product varchar(255) not null unique,
+    description_product text,
+    cst_price_product numeric(10,2) not null,
+    sale_price_product numeric(10,2) not null,
+    id_brand integer not null references Brand(id_brand),
+    id_category integer not null references Category(id_category),
+);
 
 //Tipo usuario: 1 = adm, 2 = cliente
 create table Usuario(
